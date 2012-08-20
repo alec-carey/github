@@ -6,12 +6,11 @@ public class EconomyFlight extends Flight{
 		super(newOrigin, newDestination, newDate, newEtd, newEta, newBasePrice, newConcession);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 	final double groupDiscount = 0.80; 		// this is the discount applied to customers who book more than 4 seats
-	
+	/**
+	 * This method calculates and returns the price of a customer 'c'.
+	 */
 	public double book(Customer c){
-		
 		double price;
 		// get the total of seats from customer object
 		int totalSeats = c.getAdultSeats() + c.getChildSeats();

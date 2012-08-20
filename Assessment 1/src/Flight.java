@@ -5,10 +5,16 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Flight is a superclass which helps define what a flight needs. It includes a generated id number.
+ * a list of movies and details such as arrival and departure. The abstract method tells sub classes that
+ * it must have a book method in order to be used.
+ * @author Alec Carey
+ *
+ */
 public abstract class Flight {
 	
-	int flightNumber;
+	final int flightNumber;
 	String origin;
 	String destination;
 	Date date;
@@ -16,11 +22,12 @@ public abstract class Flight {
 	int eta;
 	double basePrice;
 	double concession;
-	static List<Movie> flightMovies = new ArrayList<Movie>();
+	List<Movie> flightMovies = new ArrayList<Movie>();
+	static int c = 1; //used to increment id number
 	
 	Flight(String newOrigin, String newDestination, Date newDate, int newEtd, int newEta, double newBasePrice, double newConcession){
 		//constructor
-		flightNumber = generateFlightNumber();
+		flightNumber = c++;
 		origin = newOrigin;
 		destination = newDestination;
 		date = newDate;
@@ -30,25 +37,19 @@ public abstract class Flight {
 		concession = newConcession;
 		
 	}
-	
-	private int generateFlightNumber() {
-		/* generates a unique hash which is used for 'id' and is dependent the
-		 * attributes of the flight
-		 */
-	    StringBuilder builder = new StringBuilder();
-	    builder.append(origin);
-	    builder.append(destination);
-	    builder.append(date);
-	    builder.append(etd);
-	    builder.append(eta);
-	    return (builder.toString().hashCode()) * -1;
-	}
-	
-	public static void addMovie(Movie movie){
+	/**
+	 * adds a movie to the list of the flight. 
+	 * @param movie	
+	 */
+	public void addMovie(Movie movie){
 		flightMovies.add(movie);
+	}
+	public int getFlightNumber(){
+		return flightNumber;
 	}
 	
 	public abstract double book(Customer c);
+	
 /*	This stuff is for assessment 2 (as I didn't read that we didn't need to do this until later)
 	public void writeFlightFile() throws IOException {
 			/* Creates and writes flights.csv with formatting

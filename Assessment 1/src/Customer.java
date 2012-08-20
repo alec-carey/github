@@ -1,39 +1,35 @@
-// import java.io.*;
+// import java.io.*
+/**
+ * Customer is a class that can hold a customer's details including the name
+ * and the amount of seats they hold. There is not much to process here, just
+ * values which are used in other classes.
+ * @author Alec
+ *
+ */
 public class Customer {
-	int id;
+	final int id;
 	String name;
 	int childSeats;
 	int adultSeats;
 	int numFlights;
 	double cost;
+	static int c = 1;
+	
 
-	Customer(String newName, int newChildSeats, int newAdultSeats, double newCost){
+	Customer(String newName, int newChildSeats, int newAdultSeats){
 		// constructor 
 		name = newName;
 		childSeats = newChildSeats;
 		adultSeats = newAdultSeats;
-		cost = newCost;
-		id = generateId();
-	}
-	
-	Customer(){
-	}
-	
-	private int generateId() {
-		/* generates a unique hash which is used for 'id' and is dependent on the name
-		 * of the customer
-		 */
-	    StringBuilder builder = new StringBuilder();
-	    builder.append(name);
-	    return (builder.toString().hashCode()) * -1;
+		id =c++;
 	}
 	
 	//setters
 	public void setNumFlight(int numFlights){
 		this.numFlights = numFlights;
 	}
-	public void setCost(double cost){
-		this.cost = cost;
+	public void setCost(double newCost){
+		this.cost = cost + newCost;
 	}
 	public void setChildSeats(int childSeats){
 		this.childSeats = childSeats;
@@ -43,6 +39,12 @@ public class Customer {
 	}
 	
 	//getters
+	public String getName(){
+		return name;
+	}
+	public int getId(){
+		return id;
+	}
 	public int getNumFlight(){
 		return numFlights;
 	}

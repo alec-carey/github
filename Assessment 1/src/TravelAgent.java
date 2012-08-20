@@ -1,15 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Travel agent is a class which represents the travel agency as a whole.
+ * It can store customers and flights once initiated. Additionally it can
+ * add objects to its lists with some methods such as crateBusinessFlight.
+ * @author Alec
+ *
+ */
 
 public class TravelAgent {
 	String name;
-	List<Customer> customerList = new ArrayList<Customer>();
-	List<BusinessFlight> businessFlightList = new ArrayList<BusinessFlight>();
-	List<EconomyFlight> economyFlightList = new ArrayList<EconomyFlight>();
+	// these lists will hold all customer and flight objects
+	public List<Customer> customerList = new ArrayList<Customer>();
+	public List<BusinessFlight> businessFlightList = new ArrayList<BusinessFlight>();
+	public List<EconomyFlight> economyFlightList = new ArrayList<EconomyFlight>();
 	
 	TravelAgent(String agentName){
-	//Constructor
+	// Constructor - only needs a name
 		name = agentName;
 	}
 	
@@ -22,7 +29,7 @@ public class TravelAgent {
 		this.name = name;
 	}
 	
-	//lets create stuff
+	//we can use these methods to add to the list if we like - used for test data
 	public void createCustomer(Customer c){
 		customerList.add(c);
 	}
@@ -35,21 +42,12 @@ public class TravelAgent {
 		businessFlightList.add(b);
 	}
 	
-	public void createMovie(Movie m){
-		Flight.addMovie(m);
+	public void createBusinessMovie(Movie m, BusinessFlight b){
+		b.addMovie(m);
+	}
+	public void createEconomyMovie(Movie m, EconomyFlight e){
+		e.addMovie(m);
 	}
 	
-	// lets remove stuff
-	public void removeCustomer(Customer c){
-		customerList.remove(c);
-	}
-	
-	public void removeEconomyFlight(EconomyFlight e){
-		economyFlightList.remove(e);
-	}
-	
-	public void removeBusinessFlight(BusinessFlight b){
-		businessFlightList.remove(b);
-	}
 	
 }
