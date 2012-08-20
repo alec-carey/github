@@ -36,7 +36,7 @@ public class TravelConsole {
 		agent.createCustomer(new Customer("Mr Bean   ", 1, 0));
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 		BusinessFlight b = new BusinessFlight("Australia", "New Zealand", sdf.parse("14/05/2012"), 940, 1050, 1500, 0.50);
-		EconomyFlight e = new EconomyFlight("Australia", "Tokya", sdf.parse("12/06/2012"), 630, 2250, 8500, 0.40);
+		EconomyFlight e = new EconomyFlight("Australia", "USA", sdf.parse("12/06/2012"), 630, 2250, 8500, 0.40);
 		agent.createBusinessFlight(b);
 		agent.createEconomyFlight(e);
 		b.addMovie(new Movie("Superman 5", 130));
@@ -327,6 +327,7 @@ public class TravelConsole {
 					if (delChoice.equalsIgnoreCase("y")){
 						agent.customerList.remove(customer);						//removes selected customer here
 						System.out.println("Deleted...");
+						deleteMenu(agent);
 					}
 					else mainMenu(agent);
 				}
@@ -349,6 +350,7 @@ public class TravelConsole {
 					if (delChoice.equalsIgnoreCase("y")){
 						agent.businessFlightList.remove(business);	//deletes here
 						System.out.println("Deleted...");
+						deleteMenu(agent);
 					}
 					else mainMenu(agent);
 				}
@@ -359,11 +361,12 @@ public class TravelConsole {
 					EconomyFlight economy = e;
 					System.out.println("Records Found!");
 					System.out.println(economy.flightNumber + "\t" + economy.origin + "\t" + economy.destination);
-					System.out.println("This flight has " + economy.flightMovies.size() + "movies. Do you wish to delete? y for yes: >>: ");
+					System.out.println("This flight has " + economy.flightMovies.size() + " movies. Do you wish to delete? y for yes: >>: ");
 					String delChoice = input.next();
 					if (delChoice.equalsIgnoreCase("y")){
-						agent.businessFlightList.remove(economy);		//delete flight here
+						agent.economyFlightList.remove(economy);		//delete flight here
 						System.out.println("Deleted...");
+						deleteMenu(agent);
 					}
 					else mainMenu(agent);
 				}
